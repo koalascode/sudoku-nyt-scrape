@@ -36,8 +36,8 @@ import (
 
 type ReturnData struct {
 	Easy string `json:"easy"`
-	Hard string `json:"hard"`
 	Medium string `json:"medium"`
+	Hard string `json:"hard"`
 }
 
 func scrape() ReturnData {
@@ -89,12 +89,17 @@ func scrape() ReturnData {
 			for i := 0; i < len(boardsArr); i++ {
 
 				newString := ""
+				currNum := 1
 
 				for j := 0; j < len(boardsArr[i]); j += 2 {
+
 					newString += string(boardsArr[i][j])
 
-					if ((j != 0 && j != 160) && j % 16 == 0) {
+					currNum++
+
+					if ((j != 0 && j != 160) && currNum % 10 == 0) {
 						newString += "_"
+						currNum = 1
 					}
 
 				}
